@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🧾 Billbo – Invoice Management App
 
-## Getting Started
+Billbo is a modern, full-stack invoice management app built with **Next.js**, **PostgreSQL**, **Prisma**, and **TailwindCSS**. It supports creating, editing, and tracking invoices with real-time revenue analytics.
 
-First, run the development server:
+> Built in 4 days as part of a dev internship challenge – with custom auth, charts, hooks, and zero managed dependencies.
+
+---
+
+## ⚡ Features
+
+* 🔐 **Custom Authentication** – Email/password login with JWT-based sessions.
+* 📄 **Invoices CRUD** – Create, read, update, delete invoices per client.
+* 👥 **Client Management** – Add and manage clients linked to users.
+* 📊 **Revenue Analytics** – Track monthly revenue with clean charts.
+* 🚦 **Status Toggle** – Instantly switch between PAID and UNPAID.
+* 📁 **Seed Script** – Quickly populate database with faker data.
+* 💅 **Styled with ShadCN + Tailwind** – Clean, responsive UI.
+* ✅ **Strict TypeScript** – Full type safety across server and client.
+* ⚙️ **Reusable Hooks + Components** – Clean and scalable architecture.
+
+---
+
+## 📸 Screenshots
+
+> [Live Preview](https://bilboo.vercel.app/)
+
+---
+
+## 🧠 Tech Stack
+
+| Tech            | Usage                           |
+| --------------- | ------------------------------- |
+| **Next.js 14**  | App Router, SSR, API routes     |
+| **PostgreSQL**  | Relational database             |
+| **Prisma ORM**  | Schema modeling, migrations     |
+| **Zod + RHF**   | Form validation + custom inputs |
+| **Zustand**     | Global state (auth store)       |
+| **TailwindCSS** | Utility-first styling           |
+| **ShadCN UI**   | Reusable components             |
+| **Recharts**    | Charting and data viz           |
+| **JWT**         | Secure session handling         |
+| **Faker.js**    | Dummy data seeding              |
+
+---
+
+## 🛠️ Running Locally
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+# 1. Clone the repo
+git clone https://github.com/your-username/billbo.git
+cd billbo
+
+# 2. Install dependencies
+pnpm install
+
+# 3. Setup environment variables
+cp .env.example .env
+# Add your DATABASE_URL and JWT_SECRET
+
+# 4. Setup database
+npx prisma migrate dev --name init
+npx prisma db seed
+
+# 5. Start the app
 pnpm dev
-# or
-bun dev
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
