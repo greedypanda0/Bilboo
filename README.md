@@ -1,4 +1,4 @@
-# 🧾 Billbo – Invoice Management App
+# 🧾 Bilboo – Invoice Management App
 
 Billbo is a modern, full-stack invoice management app built with **Next.js**, **PostgreSQL**, **Prisma**, and **TailwindCSS**. It supports creating, editing, and tracking invoices with real-time revenue analytics.
 
@@ -47,8 +47,8 @@ Billbo is a modern, full-stack invoice management app built with **Next.js**, **
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/your-username/billbo.git
-cd billbo
+git clone https://github.com/greedypanda0/bilboo.git
+cd bilboo
 
 # 2. Install dependencies
 pnpm install
@@ -58,8 +58,8 @@ cp .env.example .env
 # Add your DATABASE_URL and JWT_SECRET
 
 # 4. Setup database
-npx prisma migrate dev --name init
-npx prisma db seed
+npx prisma generate
+npx prisma db push
 
 # 5. Start the app
 pnpm dev
