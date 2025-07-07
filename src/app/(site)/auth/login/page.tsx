@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 
 export default function Login() {
   const [loading, setLoading] = useState(false);
-  const router = useRouter()
+  const router = useRouter();
   const onSubmit = async (values: LoginSchemaType) => {
     setLoading(true);
     const { success, error } = await login(values);
@@ -23,8 +23,8 @@ export default function Login() {
 
     if (success) {
       toast.success("Login successful");
+      router.push("/dasboard");
     }
-    router.push("/dasboard")
   };
 
   return (
