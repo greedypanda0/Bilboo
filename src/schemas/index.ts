@@ -11,6 +11,12 @@ export const clientSchema = z.object({
   name: z.string().min(1),
 });
 
+export const invoiceSchema = z.object({
+  amount: z.coerce.number(),
+  client: z.string(),
+});
+
 
 export type LoginSchemaType = Infer<typeof loginSchema>;
 export type ClientSchemaType = Infer<typeof clientSchema>;
+export type InvoiceSchemaType = Infer<typeof invoiceSchema>;

@@ -1,14 +1,17 @@
 import { prisma } from "@/lib/prisma";
 
 export async function getUserByID(id: string) {
-  return prisma.user.findUnique({
-    where: {
-      id,
-    },
-    select: {
-      name: true,
-      email: true,
-      id: true
-    },
-  });
+  try {
+    return await prisma.user.findUnique({
+      where: { id },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+      },
+    });
+  } catch (error) {
+    console.error("Error fetching user by ID:", error);
+    return null;
+  }
 }

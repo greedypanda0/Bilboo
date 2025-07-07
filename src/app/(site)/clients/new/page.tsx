@@ -18,7 +18,7 @@ export default function New() {
     setLoading(false);
 
     if (error) {
-      toast.error("Login failed", {
+      toast.error("client creation failed", {
         description: error,
       });
     }

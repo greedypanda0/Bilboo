@@ -17,9 +17,13 @@ export function InvoiceActions({
 }) {
   const router = useRouter();
   const markAsPaid = async () => {
-    markPaid(invoice.id);
-    toast.success("Marked invoice as paid");
-    router.refresh();
+    const { success, error } = await markPaid(invoice.id);
+    if (success) {
+      toast.success("Invoice marked as paid");
+      router.refresh();
+    } else {
+      toast.error(error || "Something went wrong");
+    }
   };
 
   return (
