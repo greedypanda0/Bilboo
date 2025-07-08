@@ -10,10 +10,7 @@ export async function getRevenue() {
       where: {
         userId: user.id,
       },
-      orderBy: [
-        { year: 'asc' },
-        { month: 'asc' },
-      ],
+      orderBy: [{ year: "asc" }, { month: "asc" }],
     });
 
     return revenue;
@@ -22,7 +19,6 @@ export async function getRevenue() {
     return [];
   }
 }
-
 
 export async function addRevenue(amount: number): Promise<{
   success?: boolean;
@@ -45,7 +41,9 @@ export async function addRevenue(amount: number): Promise<{
         },
       },
       update: {
-        total: amount,
+        total: {
+          increment: amount,
+        },
       },
       create: {
         total: amount,
