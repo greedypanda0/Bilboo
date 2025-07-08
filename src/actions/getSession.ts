@@ -3,26 +3,25 @@
 import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
 import { getUserByID } from "./user";
-import { redirect } from "next/navigation";
 
 export async function getSession(): Promise<{
   name: string;
   id: string;
   email: string;
-}> {
+} | null> {
   const cookieStoe = await cookies();
   const token = cookieStoe.get("token")?.value;
 
-  if (!token) redirect("/auth/login");
+  if (!token) return null;
 
   const jwt_parsed = jwt.verify(token, process.env.JWT_SECRET!) as {
     userId: string;
   };
 
-  if (!jwt_parsed) redirect("/auth/login");
+  if (!jwt_parsed) return null;
 
   const user = await getUserByID(jwt_parsed.userId);
-  if (!user) redirect("/auth/login");
+  if (!user) return null;
 
   return user;
 }

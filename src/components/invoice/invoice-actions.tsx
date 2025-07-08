@@ -5,7 +5,7 @@ import {
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
 import { MoreVertical } from "lucide-react";
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
 import { markPaid } from "@/actions/invoices";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";

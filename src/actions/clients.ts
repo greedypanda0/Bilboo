@@ -3,11 +3,17 @@ import { prisma } from "@/lib/prisma";
 import { ClientSchemaType } from "@/schemas";
 import { getSession } from "./getSession";
 
-export async function getClientsByUserId(id: string) {
+export async function getClients() {
   try {
+    const user = await getSession();
+    if (!user) throw new TypeError("no useer");
     return await prisma.client.findMany({
-      where: { userId: id },
-      orderBy: { createdAt: "desc" },
+      where: {
+        userId: user.id,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
     });
   } catch (error) {
     console.error("Error fetching clients:", error);
@@ -15,16 +21,24 @@ export async function getClientsByUserId(id: string) {
   }
 }
 
-export async function getClientWithInvoicesByUserId(id: string) {
+export async function getClientWithInvoices() {
   try {
+    const user = await getSession()
+    if (!user) throw new TypeError("no useer");
     return await prisma.client.findMany({
-      where: { userId: id },
+      where: {
+        userId: user.id,
+      },
       include: {
         invoices: {
-          select: { id: true },
+          select: {
+            id: true,
+          },
         },
       },
-      orderBy: { createdAt: "desc" },
+      orderBy: {
+        createdAt: "desc",
+      },
     });
   } catch (error) {
     console.error("Error fetching clients with invoices:", error);

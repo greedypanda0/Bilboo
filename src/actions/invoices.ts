@@ -2,13 +2,17 @@
 import { prisma } from "@/lib/prisma";
 import { InvoiceSchemaType } from "@/schemas";
 import { InvoiceStatus } from "@prisma/client";
+import { getSession } from "./getSession";
+import { addRevenue } from "./revenue";
 
-export async function getInvoicesByUserId(id: string) {
+export async function getInvoices() {
   try {
+    const user = await getSession()
+    if (!user) throw new TypeError("no useer");
     const invoices = await prisma.invoice.findMany({
       where: {
         client: {
-          userId: id,
+          userId: user.id,
         },
       },
       include: {
@@ -74,12 +78,14 @@ export async function markPaid(id: string): Promise<{
   error?: string;
 }> {
   try {
-    await prisma.invoice.update({
+    const invoice = await prisma.invoice.update({
       where: { id },
       data: {
         status: InvoiceStatus.PAID,
       },
     });
+    const { error } = await addRevenue(invoice.amount.toNumber())
+    if(error) throw new TypeError(error)
 
     return { success: true };
   } catch (error) {

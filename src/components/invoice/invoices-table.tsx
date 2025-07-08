@@ -4,10 +4,10 @@ import { useRouter } from "next/navigation";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { DataTable } from "@/components/table";
 import { InvoiceWithClient } from "@/types";
-import { cn } from "@/lib/utils";
+import { cn, formatMoney } from "@/lib/utils";
 import { InvoiceActions } from "./invoice-actions";
 
-export default function InvoicesTable({
+export function InvoicesTable({
   invoices,
 }: {
   invoices: InvoiceWithClient[];
@@ -49,19 +49,13 @@ export default function InvoicesTable({
             label: "Amount",
             key: "amount",
             className: "text-center",
-            render: (row) =>
-              new Intl.NumberFormat(navigator.language, {
-                style: "currency",
-                currency: "USD",
-              }).format(row.amount),
+            render: (row) => formatMoney(row.amount),
           },
           {
             label: "",
             key: "actions",
             className: "text-right",
-            render: (row) => (
-              <InvoiceActions invoice={row} />
-            ),
+            render: (row) => <InvoiceActions invoice={row} />,
           },
         ]}
       />

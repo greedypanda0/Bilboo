@@ -23,7 +23,7 @@ export default function Login() {
 
     if (success) {
       toast.success("Login successful");
-      router.push("/dasboard");
+      router.push("/dashboard");
     }
   };
 

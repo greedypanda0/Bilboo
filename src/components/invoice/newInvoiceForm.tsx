@@ -3,11 +3,11 @@ import { invoiceSchema, InvoiceSchemaType } from "@/schemas";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
-import { FormWrapper } from "./form/form-wrapper";
+import { FormWrapper } from "@/components/form/form-wrapper";
 import { Client } from "@prisma/client";
 import { createInvoice } from "@/actions/invoices";
 
-export default function NewInvoiceForm({ clients }: { clients: Client[] }) {
+export function NewInvoiceForm({ clients }: { clients: Client[] }) {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const onSubmit = async (values: InvoiceSchemaType) => {

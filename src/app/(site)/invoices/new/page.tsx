@@ -1,12 +1,14 @@
 import { CardWrapper } from "@/components/ui/card-wrapper";
 import Main from "@/components/main";
-import NewInvoiceForm from "@/components/newInvoiceForm";
-import { getClientsByUserId } from "@/actions/clients";
+import { NewInvoiceForm } from "@/components/invoice/newInvoiceForm";
+import { getClients } from "@/actions/clients";
 import { getSession } from "@/actions/getSession";
+import { redirect } from "next/navigation";
 
 export default async function New() {
   const user = await getSession();
-  const clients = await getClientsByUserId(user.id);
+  if (!user) redirect("/auth/login");
+  const clients = await getClients();
 
   return (
     <Main className="max-w-xl">
