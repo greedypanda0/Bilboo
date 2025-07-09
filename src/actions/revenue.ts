@@ -5,10 +5,12 @@ export async function getRevenue() {
   try {
     const user = await getSession();
     if (!user) throw new TypeError("no user");
+    const date = new Date();
 
     const revenue = await prisma.revenue.findMany({
       where: {
         userId: user.id,
+        year: date.getFullYear(),
       },
       orderBy: [{ year: "asc" }, { month: "asc" }],
     });
