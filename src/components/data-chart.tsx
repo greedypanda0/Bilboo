@@ -16,7 +16,7 @@ type DataPoint = {
 
 export default function DataChart({ data }: { data: DataPoint[] }) {
   return (
-    <div className="rounded-xl border p-4 bg-card shadow">
+    <div className="shadow">
       <ResponsiveContainer width="100%" height={300}>
         <AreaChart data={data}>
           <XAxis dataKey="year" />
